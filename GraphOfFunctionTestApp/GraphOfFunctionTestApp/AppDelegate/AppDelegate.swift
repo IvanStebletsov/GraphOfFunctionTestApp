@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let graphVCVM = GraphVCVM()
         let graphVC = GraphVC(viewModel: graphVCVM)
         
-//        window?.rootViewController = UINavigationController(rootViewController: graphVC)
         window?.rootViewController = graphVC
         
         return true

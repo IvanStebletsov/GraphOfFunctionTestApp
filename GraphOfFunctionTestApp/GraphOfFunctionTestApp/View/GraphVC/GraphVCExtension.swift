@@ -76,9 +76,16 @@ extension GraphVC {
         drawGraphButton = UIButton()
         drawGraphButton.translatesAutoresizingMaskIntoConstraints = false
         
-        drawGraphButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        drawGraphButton.backgroundColor = #colorLiteral(red: 0.1260859668, green: 0.582623601, blue: 0.9936849475, alpha: 1)
         drawGraphButton.layer.cornerRadius = 20
-        drawGraphButton.addTarget(self, action: #selector(showInputTextField), for: UIControl.Event.touchUpInside)
+        drawGraphButton.addTarget(self, action: #selector(plotGraph), for: UIControl.Event.touchUpInside)
+        
+        let image = UIImage(named: "draw")
+        let tintedImage = image?.withRenderingMode(.alwaysTemplate)
+        
+        drawGraphButton.setImage(tintedImage, for: .normal)
+        drawGraphButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        drawGraphButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
         inputTFBackView.addSubview(drawGraphButton)
         
@@ -104,54 +111,119 @@ extension GraphVC {
         NSLayoutConstraint.activate(enteredExpressionLabelConstraints)
     }
     
-    func hideKeyboardByTapAnywhere() {
+    // MARK: - Gesture recognizer
+    func addGestureRecognizer() {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapRecognizer)
+        
+        let slideDown = UISwipeGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        slideDown.direction = .down
+        view.addGestureRecognizer(slideDown)
     }
     
+    // MARK: - Draw chart
+    @objc func plotGraph() {
+        guard let expression = validateExpression(sender: inputTextField) else { return }
+        
+        if expression.filter({ $0 == "(" }).count != expression.filter({ $0 == ")" }).count {
+            presentAlertController(with: .missingParenthesis)
+            return
+        }
+        
+        let allowedCharacters = "0123456789x"
+        
+        if inputTextField.text!.count >= 3 && expression.filter({ allowedCharacters.contains($0) }).count < 2 {
+            presentAlertController(with: .missingOperand)
+            inputTextField.text = ""
+            return
+        }
+        
+        if !inputTextField.text!.contains("x") {
+            presentAlertController(with: .missingX)
+            inputTextField.text = ""
+            return
+        }
+        
+        let pointsForGraph = viewModel.computePoints(for: expression)
+        lineChart.plotGraph(pointsForGraph)
+        
+        enteredExpressionLabel.text = "y = \(expression)"
+        inputTextField.placeholder = expression
+        
+        inputTextField.resignFirstResponder()
+        inputTextField.text = ""
+    }
+    
+    // MARK: - Dismiss keyboard
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    @objc func showInputTextField() {
-        print(#function)
-        print(inputTextField.text!)
+    // MARK: - Input validation
+    @objc func validateExpression(sender: UITextField) -> String? {
+        sender.text = sender.text?.correctInput()
+        guard let expression = sender.text?.correctInput(), !expression.isEmpty, expression != " " else { return nil }
         
+        let mathOperators = CharacterSet(charactersIn: "+-*")
         
-        //        let points = compute { (x) -> Int in
-        //            (x - 10) * (x - 10)
-        //        }
+        if sender.text!.count >= 3 && (sender.text?.rangeOfCharacter(from: mathOperators) == nil) {
+            presentAlertController(with: .missingOperator)
+            sender.text = ""
+            return nil
+        }
         
-        
-        //        lineChart.plotGraph(points)
+        return expression
     }
     
-    @objc func validateExpression(sende: UITextField) {
-        print(sende.text)
+    // MARK: - Alert
+    func presentAlertController(with error: InputError) {
+        let alertController = UIAlertController(title: "Ошибка ввода функции",
+                                                message: error.reason,
+                                                preferredStyle: .alert)
+        let okAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAlertAction)
         
-        let allowedCharacters = CharacterSet(charactersIn: "0123456789()+-*Xx").inverted
-        
-        if ((sende.text?.rangeOfCharacter(from: allowedCharacters) != nil)) {
-            sende.text? = (sende.text?.trimmingCharacters(in: allowedCharacters))!
-        }
+        self.present(alertController, animated: true)
     }
     
 }
 
+// MARK: - UITextFieldDelegate methods
 extension GraphVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print(#function, "- \(textField.text ?? "nil")")
         
-        if textField.text!.count == 0 || (!textField.text!.contains("x")) || (textField.text?.contains("()"))! {
-            print("Траблы")
-        } else {
-            //переводим в регулярное выражение и строим график
-            enteredExpressionLabel.text = "y = \(textField.text!.lowercased())"
+        guard let expression = validateExpression(sender: textField) else { return true }
+        
+        if expression.filter({ $0 == "(" }).count != expression.filter({ $0 == ")" }).count {
+            presentAlertController(with: .missingParenthesis)
+            return true
         }
         
+        let allowedCharacters = "0123456789x"
+        
+        if expression.count >= 3 && expression.filter({ allowedCharacters.contains($0) }).count < 2 {
+            presentAlertController(with: .missingOperand)
+            textField.text = ""
+            return true
+        }
+        
+        if !textField.text!.contains("x") {
+            presentAlertController(with: .missingX)
+            textField.text = ""
+            return true
+        }
+        
+        let pointsForGraph = viewModel.computePoints(for: expression)
+        
+        lineChart.plotGraph(pointsForGraph)
+        
+        enteredExpressionLabel.text = "y = \(expression)"
+        inputTextField.placeholder = expression
+        
         inputTextField.resignFirstResponder()
+        inputTextField.text = ""
         return true
     }
 }

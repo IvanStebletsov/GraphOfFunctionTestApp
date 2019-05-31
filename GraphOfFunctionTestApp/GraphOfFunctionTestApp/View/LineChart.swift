@@ -62,13 +62,12 @@ class LineChart: UIView {
         
         let axesLines = CGMutablePath()
         
-        let xAxisPoints = [CGPoint(x: xMin, y: 0), CGPoint(x: xMax, y: 0)] // TODO: - Положение оси X
-        let yAxisPoints = [CGPoint(x: 0, y: yMin), CGPoint(x: 0, y: yMax)] // TODO: - Положение оси Y
+        let xAxisPoints = [CGPoint(x: xMin, y: 0), CGPoint(x: xMax, y: 0)] // Положение оси X
+        let yAxisPoints = [CGPoint(x: 0, y: yMin), CGPoint(x: 0, y: yMax)] // Положение оси Y
         
         axesLines.addLines(between: xAxisPoints, transform: transform)
         axesLines.addLines(between: yAxisPoints, transform: transform)
         
-        // finally set stroke color & line width then stroke thick lines, repeat for thin
         context.setStrokeColor(axisColor.cgColor)
         context.setLineWidth(axisLineWidth)
         context.addPath(axesLines)
@@ -78,8 +77,6 @@ class LineChart: UIView {
         context.strokePath()
         
         context.restoreGState()
-        // whenever you change a graphics context you should save it prior and restore it after
-        // if we were using a context other than draw(rect) we would have to also end the graphics context
     }
     
     func drawGrid(in context: CGContext, using transform: CGAffineTransform) {
@@ -139,6 +136,25 @@ class LineChart: UIView {
         let xs = points.map() { $0.x }
         let ys = points.map() { $0.y }
         
+        switch Int(ys.last!) {
+        case 0...50:
+            stepY = 5
+        case 51...100:
+            stepY = 10
+        case 101...200:
+            stepY = 20
+        case 201...300:
+            stepY = 30
+        case 301...400:
+            stepY = 40
+        case 401...500:
+            stepY = 50
+        case 501...600:
+            stepY = 60
+        default:
+            stepY = 100
+        }
+        
         xMax = ceil(xs.max()! / stepX) * stepX
         yMax = ceil(ys.max()! / stepY) * stepY
         xMin = 0
@@ -170,8 +186,6 @@ class LineChart: UIView {
         guard !points.isEmpty else { return }
         
         linePoints = points
-        
-//        if self.chartTransform == nil { setAxisRange(forPoints: points) }
         
         setAxisRange(forPoints: points)
         

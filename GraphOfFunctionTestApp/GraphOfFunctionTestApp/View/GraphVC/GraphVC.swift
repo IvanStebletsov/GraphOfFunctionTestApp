@@ -11,7 +11,7 @@ import UIKit
 class GraphVC: UIViewController {
     
     // MARK: - Properties
-    var viewModel: GraphVCVM!
+    var viewModel: GraphVCVMProtocol!
     var lineChartTopAnchor: NSLayoutConstraint!
     
     // MARK: - UI elements
@@ -22,7 +22,7 @@ class GraphVC: UIViewController {
     var enteredExpressionLabel: UILabel!
     
     // MARK: - Initialization
-    init(viewModel: GraphVCVM) {
+    init(viewModel: GraphVCVMProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,26 +38,21 @@ class GraphVC: UIViewController {
         
         makeInputTextField()
         makeDrawGraphButton()
-        hideKeyboardByTapAnywhere()
+        addGestureRecognizer()
         makeChart()
         makeEnteredExpressionLabel()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        
-        let points = viewModel.computePoints { (x) -> Double in
-            (x * x)
-            }.filter({ (point) -> Bool in
-                point.x <= lineChart.xMax && point.y <= lineChart.yMax && point.y >= 0
-            })
-        
-        
-        enteredExpressionLabel.text = "y = (x*x)"
+        let points = viewModel.computePoints(for: "x * x")
+        enteredExpressionLabel.text = "y = x * x"
+        inputTextField.placeholder = "x * x"
         lineChart.plotGraph(points)
     }
     
+    // MARK: - UI Transition
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -74,6 +69,7 @@ class GraphVC: UIViewController {
         }
     }
     
+    // MARK: - UI Adjustment
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

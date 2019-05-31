@@ -16,6 +16,8 @@
 		262DFB2D22A04F81002DAC37 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB2C22A04F81002DAC37 /* CGPointExtension.swift */; };
 		262DFB3522A106E2002DAC37 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3422A106E2002DAC37 /* LineChart.swift */; };
 		262DFB3722A14706002DAC37 /* GraphVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3622A14706002DAC37 /* GraphVCVM.swift */; };
+		262DFB3A22A1DC30002DAC37 /* GraphVCVMProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3922A1DC30002DAC37 /* GraphVCVMProtocol.swift */; };
+		262DFB3C22A1E988002DAC37 /* InputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3B22A1E988002DAC37 /* InputError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		262DFB2C22A04F81002DAC37 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		262DFB3422A106E2002DAC37 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		262DFB3622A14706002DAC37 /* GraphVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVCVM.swift; sourceTree = "<group>"; };
+		262DFB3922A1DC30002DAC37 /* GraphVCVMProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVCVMProtocol.swift; sourceTree = "<group>"; };
+		262DFB3B22A1E988002DAC37 /* InputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 			children = (
 				262DFB2422A04615002DAC37 /* AppDelegate */,
 				262DFB2522A04637002DAC37 /* View */,
+				262DFB3822A1DC0D002DAC37 /* Protocols */,
 				262DFB2922A04F15002DAC37 /* Helpers */,
 				262DFB2622A04650002DAC37 /* Resources */,
 			);
@@ -102,6 +107,7 @@
 			children = (
 				262DFB2A22A04F3C002DAC37 /* StringExtension.swift */,
 				262DFB2C22A04F81002DAC37 /* CGPointExtension.swift */,
+				262DFB3B22A1E988002DAC37 /* InputError.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -114,6 +120,14 @@
 				262DFB3622A14706002DAC37 /* GraphVCVM.swift */,
 			);
 			path = GraphVC;
+			sourceTree = "<group>";
+		};
+		262DFB3822A1DC0D002DAC37 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				262DFB3922A1DC30002DAC37 /* GraphVCVMProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,7 +201,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				262DFB2B22A04F3C002DAC37 /* StringExtension.swift in Sources */,
+				262DFB3C22A1E988002DAC37 /* InputError.swift in Sources */,
 				262DFB2822A04754002DAC37 /* GraphVCExtension.swift in Sources */,
+				262DFB3A22A1DC30002DAC37 /* GraphVCVMProtocol.swift in Sources */,
 				262DFB2D22A04F81002DAC37 /* CGPointExtension.swift in Sources */,
 				262DFB3522A106E2002DAC37 /* LineChart.swift in Sources */,
 				262DFB1522A043A1002DAC37 /* GraphVC.swift in Sources */,
