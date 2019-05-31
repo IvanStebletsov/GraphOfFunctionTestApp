@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		262DFB1322A043A1002DAC37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB1222A043A1002DAC37 /* AppDelegate.swift */; };
-		262DFB1522A043A1002DAC37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB1422A043A1002DAC37 /* ViewController.swift */; };
-		262DFB1822A043A1002DAC37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 262DFB1622A043A1002DAC37 /* Main.storyboard */; };
+		262DFB1522A043A1002DAC37 /* GraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB1422A043A1002DAC37 /* GraphVC.swift */; };
 		262DFB1A22A043A3002DAC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 262DFB1922A043A3002DAC37 /* Assets.xcassets */; };
 		262DFB1D22A043A3002DAC37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 262DFB1B22A043A3002DAC37 /* LaunchScreen.storyboard */; };
+		262DFB2822A04754002DAC37 /* GraphVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB2722A04754002DAC37 /* GraphVCExtension.swift */; };
+		262DFB2B22A04F3C002DAC37 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB2A22A04F3C002DAC37 /* StringExtension.swift */; };
+		262DFB2D22A04F81002DAC37 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB2C22A04F81002DAC37 /* CGPointExtension.swift */; };
+		262DFB3522A106E2002DAC37 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3422A106E2002DAC37 /* LineChart.swift */; };
+		262DFB3722A14706002DAC37 /* GraphVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3622A14706002DAC37 /* GraphVCVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		262DFB0F22A043A1002DAC37 /* GraphOfFunctionTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphOfFunctionTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		262DFB1222A043A1002DAC37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		262DFB1422A043A1002DAC37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		262DFB1722A043A1002DAC37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		262DFB1422A043A1002DAC37 /* GraphVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVC.swift; sourceTree = "<group>"; };
 		262DFB1922A043A3002DAC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		262DFB1C22A043A3002DAC37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		262DFB1E22A043A3002DAC37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		262DFB2722A04754002DAC37 /* GraphVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVCExtension.swift; sourceTree = "<group>"; };
+		262DFB2A22A04F3C002DAC37 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		262DFB2C22A04F81002DAC37 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
+		262DFB3422A106E2002DAC37 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
+		262DFB3622A14706002DAC37 /* GraphVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVCVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,58 @@
 		262DFB1122A043A1002DAC37 /* GraphOfFunctionTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				262DFB1222A043A1002DAC37 /* AppDelegate.swift */,
-				262DFB1422A043A1002DAC37 /* ViewController.swift */,
-				262DFB1622A043A1002DAC37 /* Main.storyboard */,
-				262DFB1922A043A3002DAC37 /* Assets.xcassets */,
-				262DFB1B22A043A3002DAC37 /* LaunchScreen.storyboard */,
-				262DFB1E22A043A3002DAC37 /* Info.plist */,
+				262DFB2422A04615002DAC37 /* AppDelegate */,
+				262DFB2522A04637002DAC37 /* View */,
+				262DFB2922A04F15002DAC37 /* Helpers */,
+				262DFB2622A04650002DAC37 /* Resources */,
 			);
 			path = GraphOfFunctionTestApp;
+			sourceTree = "<group>";
+		};
+		262DFB2422A04615002DAC37 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				262DFB1222A043A1002DAC37 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		262DFB2522A04637002DAC37 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				262DFB3422A106E2002DAC37 /* LineChart.swift */,
+				262DFB2E22A04F9E002DAC37 /* GraphVC */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		262DFB2622A04650002DAC37 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				262DFB1922A043A3002DAC37 /* Assets.xcassets */,
+				262DFB1E22A043A3002DAC37 /* Info.plist */,
+				262DFB1B22A043A3002DAC37 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		262DFB2922A04F15002DAC37 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				262DFB2A22A04F3C002DAC37 /* StringExtension.swift */,
+				262DFB2C22A04F81002DAC37 /* CGPointExtension.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		262DFB2E22A04F9E002DAC37 /* GraphVC */ = {
+			isa = PBXGroup;
+			children = (
+				262DFB1422A043A1002DAC37 /* GraphVC.swift */,
+				262DFB2722A04754002DAC37 /* GraphVCExtension.swift */,
+				262DFB3622A14706002DAC37 /* GraphVCVM.swift */,
+			);
+			path = GraphVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +176,6 @@
 			files = (
 				262DFB1D22A043A3002DAC37 /* LaunchScreen.storyboard in Resources */,
 				262DFB1A22A043A3002DAC37 /* Assets.xcassets in Resources */,
-				262DFB1822A043A1002DAC37 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				262DFB1522A043A1002DAC37 /* ViewController.swift in Sources */,
+				262DFB2B22A04F3C002DAC37 /* StringExtension.swift in Sources */,
+				262DFB2822A04754002DAC37 /* GraphVCExtension.swift in Sources */,
+				262DFB2D22A04F81002DAC37 /* CGPointExtension.swift in Sources */,
+				262DFB3522A106E2002DAC37 /* LineChart.swift in Sources */,
+				262DFB1522A043A1002DAC37 /* GraphVC.swift in Sources */,
+				262DFB3722A14706002DAC37 /* GraphVCVM.swift in Sources */,
 				262DFB1322A043A1002DAC37 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +199,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		262DFB1622A043A1002DAC37 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				262DFB1722A043A1002DAC37 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		262DFB1B22A043A3002DAC37 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A9K28Z29SG;
-				INFOPLIST_FILE = GraphOfFunctionTestApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GraphOfFunctionTestApp/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -292,7 +340,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.stebletsovIO.GraphOfFunctionTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,7 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A9K28Z29SG;
-				INFOPLIST_FILE = GraphOfFunctionTestApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GraphOfFunctionTestApp/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,7 +358,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.stebletsovIO.GraphOfFunctionTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
