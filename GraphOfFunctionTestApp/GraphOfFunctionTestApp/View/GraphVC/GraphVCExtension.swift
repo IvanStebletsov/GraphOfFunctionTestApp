@@ -139,11 +139,11 @@ extension GraphVC {
             return
         }
         
-        if !inputTextField.text!.contains("x") {
-            presentAlertController(with: .missingX)
-            inputTextField.text = ""
-            return
-        }
+//        if !inputTextField.text!.contains("x") {
+//            presentAlertController(with: .missingX)
+//            inputTextField.text = ""
+//            return
+//        }
         
         let pointsForGraph = viewModel.computePoints(for: expression)
         lineChart.plotGraph(pointsForGraph)
@@ -209,11 +209,11 @@ extension GraphVC: UITextFieldDelegate {
             return true
         }
         
-        if !textField.text!.contains("x") {
-            presentAlertController(with: .missingX)
-            textField.text = ""
-            return true
-        }
+//        if !textField.text!.contains("x") {
+//            presentAlertController(with: .missingX)
+//            textField.text = ""
+//            return true
+//        }
         
         let pointsForGraph = viewModel.computePoints(for: expression)
         

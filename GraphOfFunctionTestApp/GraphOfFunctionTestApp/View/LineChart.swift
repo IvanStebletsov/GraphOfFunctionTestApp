@@ -133,11 +133,13 @@ class LineChart: UIView {
     func setAxisRange(forPoints points: [CGPoint]) {
         guard !points.isEmpty else { return }
         
-        let xs = points.map() { $0.x }
-        let ys = points.map() { $0.y }
+        let xPoints = points.map() { $0.x }
+        let yPoints = points.map() { $0.y }
         
-        switch Int(ys.last!) {
-        case 0...50:
+        switch Int(yPoints.max()!) {
+        case 0...25:
+            stepY = 1
+        case 26...50:
             stepY = 5
         case 51...100:
             stepY = 10
@@ -155,10 +157,24 @@ class LineChart: UIView {
             stepY = 100
         }
         
-        xMax = ceil(xs.max()! / stepX) * stepX
-        yMax = ceil(ys.max()! / stepY) * stepY
-        xMin = 0
-        yMin = 0
+        if Set(yPoints).count == 1 && yPoints.first != 0 {
+            xMax = 50
+            yMax = ceil(yPoints.max()! / stepY) * stepY * 2
+            xMin = 0
+            yMin = 0
+        } else if Int(yPoints.max()!) > 100 {
+            xMax = ceil(xPoints.max()! / stepX) * stepX
+            yMax = ceil(yPoints.max()! / stepY) * stepY
+            xMin = 0
+            yMin = 0
+        } else {
+            xMax = 50
+            yMax = 2000
+            xMin = 0
+            yMin = 0
+            stepY = 100
+        }
+        
         setTransform(minX: xMin, maxX: xMax, minY: yMin, maxY: yMax)
     }
     
@@ -194,18 +210,16 @@ class LineChart: UIView {
         
         lineLayer.path = linePath
         
-        markersLayer.path = circles(atPoints: points, withTransform: chartTransform!)
+        markersLayer.path = circles(atPoints: points, with: chartTransform!)
     }
     
-    func circles(atPoints points: [CGPoint], withTransform t: CGAffineTransform) -> CGPath {
-        
+    func circles(atPoints points: [CGPoint], with transform: CGAffineTransform) -> CGPath {
         let path = CGMutablePath()
-        let radius = lineLayer.lineWidth * markersSize/2
+        let radius = lineLayer.lineWidth * markersSize / 2
         for i in points {
-            let p = i.applying(t)
+            let p = i.applying(transform)
             let rect = CGRect(x: p.x - radius, y: p.y - radius, width: radius * 2, height: radius * 2)
             path.addEllipse(in: rect)
-            
         }
         return path
     }

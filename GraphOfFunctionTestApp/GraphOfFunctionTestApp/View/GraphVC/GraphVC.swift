@@ -46,9 +46,8 @@ class GraphVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let points = viewModel.computePoints(for: "x * x")
-        enteredExpressionLabel.text = "y = x * x"
-        inputTextField.placeholder = "x * x"
+        let points = viewModel.computePoints(for: "-x")
+        inputTextField.placeholder = "Введите функцию"
         lineChart.plotGraph(points)
     }
     
