@@ -54,7 +54,7 @@ extension GraphVC {
         NSLayoutConstraint.activate(inputTFBackViewConstraints)
         
         inputTextField = UITextField()
-        inputTextField.addTarget(self, action: #selector(validateExpression), for: UIControl.Event.editingChanged)
+        inputTextField.addTarget(self, action: #selector(correctExpression(from:)), for: UIControl.Event.editingChanged)
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
         
         inputTextField.delegate = self
@@ -124,26 +124,9 @@ extension GraphVC {
     
     // MARK: - Draw chart
     @objc func plotGraph() {
-        guard let expression = validateExpression(sender: inputTextField) else { return }
         
-        if expression.filter({ $0 == "(" }).count != expression.filter({ $0 == ")" }).count {
-            presentAlertController(with: .missingParenthesis)
-            return
-        }
-        
-        let allowedCharacters = "0123456789x"
-        
-        if inputTextField.text!.count >= 3 && expression.filter({ allowedCharacters.contains($0) }).count < 2 {
-            presentAlertController(with: .missingOperand)
-            inputTextField.text = ""
-            return
-        }
-        
-//        if !inputTextField.text!.contains("x") {
-//            presentAlertController(with: .missingX)
-//            inputTextField.text = ""
-//            return
-//        }
+        guard let expression = correctExpression(from: inputTextField) else { return }
+        guard isValid(this: expression.separateWithSpaces()) else { return }
         
         let pointsForGraph = viewModel.computePoints(for: expression)
         lineChart.plotGraph(pointsForGraph)
@@ -161,7 +144,7 @@ extension GraphVC {
     }
     
     // MARK: - Input validation
-    @objc func validateExpression(sender: UITextField) -> String? {
+    @objc func correctExpression(from sender: UITextField) -> String? {
         sender.text = sender.text?.correctInput()
         guard let expression = sender.text?.correctInput(), !expression.isEmpty, expression != " " else { return nil }
         
@@ -193,37 +176,26 @@ extension GraphVC {
 extension GraphVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        plotGraph()
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func isValid(this expression: String) -> Bool {
         
-        guard let expression = validateExpression(sender: textField) else { return true }
-        
+        // Проверяем, содержит ли выражене все необходимые скобки
         if expression.filter({ $0 == "(" }).count != expression.filter({ $0 == ")" }).count {
             presentAlertController(with: .missingParenthesis)
-            return true
+            return false
         }
         
+        // Проверяем, содержит выражение необходимое количество операндов, относительно операторов
         let allowedCharacters = "0123456789x"
-        
         if expression.count >= 3 && expression.filter({ allowedCharacters.contains($0) }).count < 2 {
             presentAlertController(with: .missingOperand)
-            textField.text = ""
-            return true
+            return false
         }
         
-//        if !textField.text!.contains("x") {
-//            presentAlertController(with: .missingX)
-//            textField.text = ""
-//            return true
-//        }
-        
-        let pointsForGraph = viewModel.computePoints(for: expression)
-        
-        lineChart.plotGraph(pointsForGraph)
-        
-        enteredExpressionLabel.text = "y = \(expression)"
-        inputTextField.placeholder = expression
-        
-        inputTextField.resignFirstResponder()
-        inputTextField.text = ""
         return true
     }
 }

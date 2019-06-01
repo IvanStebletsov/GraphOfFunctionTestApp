@@ -42,4 +42,12 @@ extension String {
         return correctInput
     }
     
+    func separateWithSpaces() -> String {
+        var separatedString = ""
+        for char in self {
+            separatedString += "\(char) "
+        }
+        return String(separatedString.dropLast())
+    }
+    
 }

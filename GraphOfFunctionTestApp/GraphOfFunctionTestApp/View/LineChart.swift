@@ -162,7 +162,7 @@ class LineChart: UIView {
             yMax = ceil(yPoints.max()! / stepY) * stepY * 2
             xMin = 0
             yMin = 0
-        } else if Int(yPoints.max()!) > 100 {
+        } else if Int(yPoints.max()!) >= 50 {
             xMax = ceil(xPoints.max()! / stepX) * stepX
             yMax = ceil(yPoints.max()! / stepY) * stepY
             xMin = 0
