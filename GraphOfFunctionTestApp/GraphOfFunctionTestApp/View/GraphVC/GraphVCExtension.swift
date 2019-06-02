@@ -135,10 +135,10 @@ extension GraphVC {
         if expression.rangeOfCharacter(from: mathOperatorsCharacterSet) != nil {
             enteredExpressionLabel.text = "y = \(expression.separateWithSpaces())"
             inputTextField.placeholder = expression.separateWithSpaces()
+        } else {
+            enteredExpressionLabel.text = "y = \(expression)"
+            inputTextField.placeholder = expression
         }
-        
-        enteredExpressionLabel.text = "y = \(expression)"
-        inputTextField.placeholder = expression
         
         inputTextField.resignFirstResponder()
         inputTextField.text = ""

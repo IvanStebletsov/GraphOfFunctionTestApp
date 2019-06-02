@@ -34,7 +34,7 @@ extension String {
     
     func separateWithSpaces() -> String {
         var separatedString = ""
-        for char in self {
+        for char in self.replacingOccurrences(of: " ", with: "") {
             separatedString += "\(char) "
         }
         return String(separatedString.dropLast())
