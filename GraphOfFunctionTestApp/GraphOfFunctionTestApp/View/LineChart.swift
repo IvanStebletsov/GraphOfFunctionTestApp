@@ -137,9 +137,11 @@ class LineChart: UIView {
         let yPoints = points.map() { $0.y }
         
         switch Int(yPoints.max()!) {
-        case 0...25:
+        case 0...15:
             stepY = 1
-        case 26...50:
+        case 16...30:
+            stepY = 2
+        case 31...50:
             stepY = 5
         case 51...100:
             stepY = 10
@@ -162,7 +164,7 @@ class LineChart: UIView {
             yMax = ceil(yPoints.max()! / stepY) * stepY * 2
             xMin = 0
             yMin = 0
-        } else if Int(yPoints.max()!) >= 50 {
+        } else if Int(yPoints.max()!) >= 15 {
             xMax = ceil(xPoints.max()! / stepX) * stepX
             yMax = ceil(yPoints.max()! / stepY) * stepY
             xMin = 0

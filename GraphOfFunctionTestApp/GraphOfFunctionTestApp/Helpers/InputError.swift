@@ -8,23 +8,23 @@
 
 import Foundation
 
-enum InputError: String {
+enum InputError: Error {
     
     case missingParenthesis
     case missingOperand
-    case missingOperator
-    case missingX
+    case complexError
+    case negativeResult
     
     var reason: String {
         switch self {
         case .missingParenthesis:
             return "Нехватает скобки ()"
         case .missingOperand:
-            return "В выражении нехватает одного операнда (x, 0-9)"
-        case .missingOperator:
-            return "В выражении нехватает математического оператора (+, -, *)"
-        case .missingX:
-            return "В выражении нехватает переменной (x)"
+            return "В выражении не хватает операнда (x, 0-9)"
+        case .complexError:
+            return "Выражение введено некорректно.\nИспользуйте числа (0-9), математические операторы (+, -, *) и переменную (x)\nНапример: 3 * (2 + x)"
+        case .negativeResult:
+            return "Введенное выражение дает отрицательный результат"
         }
     }
     

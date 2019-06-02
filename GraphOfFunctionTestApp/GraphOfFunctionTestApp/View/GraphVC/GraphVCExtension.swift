@@ -60,7 +60,7 @@ extension GraphVC {
         inputTextField.delegate = self
         inputTextField.textColor = #colorLiteral(red: 0.1937165895, green: 0.2214707394, blue: 0.2453658953, alpha: 1)
         inputTextField.font = .boldSystemFont(ofSize: 20)
-        inputTextField.placeholder = "(3 * (2 + x))"
+        inputTextField.placeholder = "Введите функцию"
         
         inputTFBackView.addSubview(inputTextField)
         
@@ -124,12 +124,18 @@ extension GraphVC {
     
     // MARK: - Draw chart
     @objc func plotGraph() {
-        
         guard let expression = correctExpression(from: inputTextField) else { return }
-        guard isValid(this: expression.separateWithSpaces()) else { return }
+        let validationResult = inputValidator.isValid(this: expression)
+        guard validationResult.1 == nil else { presentAlertController(with: validationResult.1!); return }
         
         let pointsForGraph = viewModel.computePoints(for: expression)
         lineChart.plotGraph(pointsForGraph)
+        
+        let mathOperatorsCharacterSet = CharacterSet(charactersIn: "+-*")
+        if expression.rangeOfCharacter(from: mathOperatorsCharacterSet) != nil {
+            enteredExpressionLabel.text = "y = \(expression.separateWithSpaces())"
+            inputTextField.placeholder = expression.separateWithSpaces()
+        }
         
         enteredExpressionLabel.text = "y = \(expression)"
         inputTextField.placeholder = expression
@@ -147,15 +153,6 @@ extension GraphVC {
     @objc func correctExpression(from sender: UITextField) -> String? {
         sender.text = sender.text?.correctInput()
         guard let expression = sender.text?.correctInput(), !expression.isEmpty, expression != " " else { return nil }
-        
-        let mathOperators = CharacterSet(charactersIn: "+-*")
-        
-        if sender.text!.count >= 3 && (sender.text?.rangeOfCharacter(from: mathOperators) == nil) {
-            presentAlertController(with: .missingOperator)
-            sender.text = ""
-            return nil
-        }
-        
         return expression
     }
     
@@ -181,22 +178,5 @@ extension GraphVC: UITextFieldDelegate {
         return true
     }
     
-    func isValid(this expression: String) -> Bool {
-        
-        // Проверяем, содержит ли выражене все необходимые скобки
-        if expression.filter({ $0 == "(" }).count != expression.filter({ $0 == ")" }).count {
-            presentAlertController(with: .missingParenthesis)
-            return false
-        }
-        
-        // Проверяем, содержит выражение необходимое количество операндов, относительно операторов
-        let allowedCharacters = "0123456789x"
-        if expression.count >= 3 && expression.filter({ allowedCharacters.contains($0) }).count < 2 {
-            presentAlertController(with: .missingOperand)
-            return false
-        }
-        
-        return true
-    }
 }
 

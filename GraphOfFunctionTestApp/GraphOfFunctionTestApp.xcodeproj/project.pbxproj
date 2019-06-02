@@ -18,7 +18,21 @@
 		262DFB3722A14706002DAC37 /* GraphVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3622A14706002DAC37 /* GraphVCVM.swift */; };
 		262DFB3A22A1DC30002DAC37 /* GraphVCVMProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3922A1DC30002DAC37 /* GraphVCVMProtocol.swift */; };
 		262DFB3C22A1E988002DAC37 /* InputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3B22A1E988002DAC37 /* InputError.swift */; };
+		262DFB3F22A3D710002DAC37 /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB3E22A3D710002DAC37 /* InputValidator.swift */; };
+		262DFB4722A3E641002DAC37 /* InputValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB4622A3E641002DAC37 /* InputValidationTests.swift */; };
+		262DFB4F22A3EC03002DAC37 /* GraphVCVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DFB4E22A3EC03002DAC37 /* GraphVCVMTests.swift */; };
+		262DFB5322A3F8E8002DAC37 /* GraphGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 262DFB5222A3F8E8002DAC37 /* GraphGrid.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		262DFB4922A3E641002DAC37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 262DFB0722A043A1002DAC37 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 262DFB0E22A043A1002DAC37;
+			remoteInfo = GraphOfFunctionTestApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		262DFB0F22A043A1002DAC37 /* GraphOfFunctionTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphOfFunctionTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,10 +48,23 @@
 		262DFB3622A14706002DAC37 /* GraphVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVCVM.swift; sourceTree = "<group>"; };
 		262DFB3922A1DC30002DAC37 /* GraphVCVMProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVCVMProtocol.swift; sourceTree = "<group>"; };
 		262DFB3B22A1E988002DAC37 /* InputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputError.swift; sourceTree = "<group>"; };
+		262DFB3E22A3D710002DAC37 /* InputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
+		262DFB4422A3E641002DAC37 /* GraphOfFunctionTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphOfFunctionTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		262DFB4622A3E641002DAC37 /* InputValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationTests.swift; sourceTree = "<group>"; };
+		262DFB4822A3E641002DAC37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		262DFB4E22A3EC03002DAC37 /* GraphVCVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVCVMTests.swift; sourceTree = "<group>"; };
+		262DFB5222A3F8E8002DAC37 /* GraphGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GraphGrid.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		262DFB0C22A043A1002DAC37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		262DFB4122A3E641002DAC37 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				262DFB1122A043A1002DAC37 /* GraphOfFunctionTestApp */,
+				262DFB4522A3E641002DAC37 /* GraphOfFunctionTestAppTests */,
 				262DFB1022A043A1002DAC37 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				262DFB0F22A043A1002DAC37 /* GraphOfFunctionTestApp.app */,
+				262DFB4422A3E641002DAC37 /* GraphOfFunctionTestAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,6 +97,7 @@
 			children = (
 				262DFB2422A04615002DAC37 /* AppDelegate */,
 				262DFB2522A04637002DAC37 /* View */,
+				262DFB3D22A3D6ED002DAC37 /* Services */,
 				262DFB3822A1DC0D002DAC37 /* Protocols */,
 				262DFB2922A04F15002DAC37 /* Helpers */,
 				262DFB2622A04650002DAC37 /* Resources */,
@@ -95,6 +125,7 @@
 		262DFB2622A04650002DAC37 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				262DFB5222A3F8E8002DAC37 /* GraphGrid.png */,
 				262DFB1922A043A3002DAC37 /* Assets.xcassets */,
 				262DFB1E22A043A3002DAC37 /* Info.plist */,
 				262DFB1B22A043A3002DAC37 /* LaunchScreen.storyboard */,
@@ -130,6 +161,24 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		262DFB3D22A3D6ED002DAC37 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				262DFB3E22A3D710002DAC37 /* InputValidator.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		262DFB4522A3E641002DAC37 /* GraphOfFunctionTestAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				262DFB4622A3E641002DAC37 /* InputValidationTests.swift */,
+				262DFB4E22A3EC03002DAC37 /* GraphVCVMTests.swift */,
+				262DFB4822A3E641002DAC37 /* Info.plist */,
+			);
+			path = GraphOfFunctionTestAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,6 +199,24 @@
 			productReference = 262DFB0F22A043A1002DAC37 /* GraphOfFunctionTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		262DFB4322A3E641002DAC37 /* GraphOfFunctionTestAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 262DFB4B22A3E641002DAC37 /* Build configuration list for PBXNativeTarget "GraphOfFunctionTestAppTests" */;
+			buildPhases = (
+				262DFB4022A3E641002DAC37 /* Sources */,
+				262DFB4122A3E641002DAC37 /* Frameworks */,
+				262DFB4222A3E641002DAC37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				262DFB4A22A3E641002DAC37 /* PBXTargetDependency */,
+			);
+			name = GraphOfFunctionTestAppTests;
+			productName = GraphOfFunctionTestAppTests;
+			productReference = 262DFB4422A3E641002DAC37 /* GraphOfFunctionTestAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -162,6 +229,10 @@
 				TargetAttributes = {
 					262DFB0E22A043A1002DAC37 = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					262DFB4322A3E641002DAC37 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 262DFB0E22A043A1002DAC37;
 					};
 				};
 			};
@@ -179,6 +250,7 @@
 			projectRoot = "";
 			targets = (
 				262DFB0E22A043A1002DAC37 /* GraphOfFunctionTestApp */,
+				262DFB4322A3E641002DAC37 /* GraphOfFunctionTestAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -188,8 +260,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262DFB5322A3F8E8002DAC37 /* GraphGrid.png in Resources */,
 				262DFB1D22A043A3002DAC37 /* LaunchScreen.storyboard in Resources */,
 				262DFB1A22A043A3002DAC37 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		262DFB4222A3E641002DAC37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +285,7 @@
 				262DFB2822A04754002DAC37 /* GraphVCExtension.swift in Sources */,
 				262DFB3A22A1DC30002DAC37 /* GraphVCVMProtocol.swift in Sources */,
 				262DFB2D22A04F81002DAC37 /* CGPointExtension.swift in Sources */,
+				262DFB3F22A3D710002DAC37 /* InputValidator.swift in Sources */,
 				262DFB3522A106E2002DAC37 /* LineChart.swift in Sources */,
 				262DFB1522A043A1002DAC37 /* GraphVC.swift in Sources */,
 				262DFB3722A14706002DAC37 /* GraphVCVM.swift in Sources */,
@@ -212,7 +293,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		262DFB4022A3E641002DAC37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				262DFB4F22A3EC03002DAC37 /* GraphVCVMTests.swift in Sources */,
+				262DFB4722A3E641002DAC37 /* InputValidationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		262DFB4A22A3E641002DAC37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 262DFB0E22A043A1002DAC37 /* GraphOfFunctionTestApp */;
+			targetProxy = 262DFB4922A3E641002DAC37 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		262DFB1B22A043A3002DAC37 /* LaunchScreen.storyboard */ = {
@@ -378,6 +476,46 @@
 			};
 			name = Release;
 		};
+		262DFB4C22A3E641002DAC37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A9K28Z29SG;
+				INFOPLIST_FILE = GraphOfFunctionTestAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.stebletsovIO.GraphOfFunctionTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraphOfFunctionTestApp.app/GraphOfFunctionTestApp";
+			};
+			name = Debug;
+		};
+		262DFB4D22A3E641002DAC37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A9K28Z29SG;
+				INFOPLIST_FILE = GraphOfFunctionTestAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.stebletsovIO.GraphOfFunctionTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraphOfFunctionTestApp.app/GraphOfFunctionTestApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -395,6 +533,15 @@
 			buildConfigurations = (
 				262DFB2222A043A3002DAC37 /* Debug */,
 				262DFB2322A043A3002DAC37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		262DFB4B22A3E641002DAC37 /* Build configuration list for PBXNativeTarget "GraphOfFunctionTestAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				262DFB4C22A3E641002DAC37 /* Debug */,
+				262DFB4D22A3E641002DAC37 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

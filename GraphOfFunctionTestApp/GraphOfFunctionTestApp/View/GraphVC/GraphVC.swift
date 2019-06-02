@@ -13,6 +13,7 @@ class GraphVC: UIViewController {
     // MARK: - Properties
     var viewModel: GraphVCVMProtocol!
     var lineChartTopAnchor: NSLayoutConstraint!
+    let inputValidator = InputValidator()
     
     // MARK: - UI elements
     var inputTFBackView: UIView!
@@ -47,7 +48,6 @@ class GraphVC: UIViewController {
         super.viewWillAppear(animated)
         
         let points = viewModel.computePoints(for: "-x")
-        inputTextField.placeholder = "Введите функцию"
         lineChart.plotGraph(points)
     }
     
